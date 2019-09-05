@@ -55,6 +55,10 @@ export default class ProductDetailForm extends vue {
   created() {
     console.log("Form created");
   }
+  beforeDestroy() {
+    this.$store.commit("resetDocRef");
+    console.log("deleteing docRef");
+  }
   destroyed() {
     console.log("Form destroyed");
   }

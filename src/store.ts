@@ -5,8 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    docRef: "",
-    isNewProduct:false
+    docRef: ""
   },
   getters: {
     getDocRef: state => {
@@ -16,6 +15,9 @@ export default new Vuex.Store({
   mutations: {
     setDocRef(state, value) {
       state.docRef = value;
+    },
+    resetDocRef(state) {
+      state.docRef = "";
     }
   },
   actions: {}

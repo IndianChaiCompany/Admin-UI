@@ -37,6 +37,10 @@ export default class ProductVue extends Vue {
   mounted() {
     this.getProductsOf("tea");
   }
+
+  destroyed() {
+    console.log("List destroyed");
+  }
 }
 </script>
 
