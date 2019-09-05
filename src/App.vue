@@ -24,14 +24,12 @@
     </v-app-bar>
 
     <v-content>
-      <home />
       <router-view />
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
-import Home from "@/views/Home.vue";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component

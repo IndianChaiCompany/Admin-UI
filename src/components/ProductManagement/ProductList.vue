@@ -5,11 +5,6 @@
       :key="key"
       :product="product"
     ></ProductTile>
-    <ProductTile
-      v-for="(product, key) in productList"
-      :key="key"
-      :product="product"
-    ></ProductTile>
   </v-container>
 </template>
 
