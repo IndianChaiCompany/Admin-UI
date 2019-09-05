@@ -2,9 +2,9 @@
   <v-card class="ma-2">
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title class="headline mb-1">{{
-          product.name
-        }}</v-list-item-title>
+        <v-list-item-title class="headline mb-1">
+          {{ product.name }}
+        </v-list-item-title>
         <v-list-item-subtitle>{{ product.summary }}</v-list-item-subtitle>
       </v-list-item-content>
 
@@ -15,7 +15,7 @@
 
     <v-card-actions>
       <v-btn text>Edit</v-btn>
-      <v-btn text>Delete</v-btn>
+      <v-btn text @click="deleteProduct">Delete</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -24,9 +24,19 @@
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { IProduct } from "../../../../Common/IProducts";
+import * as firebase from "firebase/app";
+import "firebase/firestore";
 
 @Component
 export default class ProductTile extends Vue {
   @Prop({ type: Object as () => IProduct }) product!: IProduct;
+  @Prop(String) refID!: string;
+
+  deleteProduct() {
+    let db = firebase.firestore();
+    db.collection("Product")
+      .doc(this.refID)
+      .delete();
+  }
 }
 </script>

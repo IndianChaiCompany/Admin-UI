@@ -3,7 +3,8 @@
     <ProductTile
       v-for="(product, key) in productList"
       :key="key"
-      :product="product"
+      :product="product[0]"
+      :refID="product[1]"
     ></ProductTile>
   </v-container>
 </template>
@@ -21,7 +22,7 @@ import ProductTile from "./ProductTile.vue";
   }
 })
 export default class ProductVue extends Vue {
-  productList: IProduct[] = [];
+  productList: [IProduct, string][] = [];
   getProductsOf(type: ProductType) {
     let db = firebase.firestore();
     db.collection("Product")
@@ -29,7 +30,7 @@ export default class ProductVue extends Vue {
       .onSnapshot(snapshot => {
         this.productList = [];
         snapshot.forEach(product => {
-          this.productList.push(product.data() as IProduct);
+          this.productList.push([product.data() as IProduct, product.id]);
         });
       });
   }

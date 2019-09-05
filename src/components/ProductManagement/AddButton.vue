@@ -15,7 +15,7 @@
 export default {
   methods: {
     click() {
-      this.$emit("Add");
+      this.$emit("add");
     }
   }
 };

@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import ProductList from "./components/ProductManagement/ProductList.vue"
+import Product from "./views/Product.vue";
+import ProductDetailForm from "./components/ProductManagement/ProductDetailForm.vue";
 
 Vue.use(Router);
 
@@ -24,9 +25,14 @@ export default new Router({
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     {
-      path:"/product",
-      name:"product",
-      component:ProductList
+      path: "/product",
+      name: "product",
+      component: Product
+    },
+    {
+      path: "/product/add",
+      name: "product add",
+      component: ProductDetailForm
     }
   ]
 });
