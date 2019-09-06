@@ -27,7 +27,7 @@ export default new Router({
     {
       path: "/product",
       name: "product",
-      component: Product,
+      component: Product
       // beforeEnter(to, from, next) {
       //   const name = prompt("Enter name");
       //   if (name == "ankur") {
@@ -47,6 +47,5 @@ export default new Router({
       name: "product edit",
       component: ProductDetailForm
     }
-
   ]
 });

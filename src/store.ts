@@ -1,12 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import * as firebase from "firebase/app";
+import "firebase/firestore";
+import { IProduct, IVariant } from "../../Common/IProducts";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     docRef: "",
-    currentProduct: {}
+    currentProduct: {},
+    currentProductVariant: []
   },
   getters: {
     getDocRef: state => {
@@ -14,6 +18,9 @@ export default new Vuex.Store({
     },
     getCurrentProduct: state => {
       return state.currentProduct;
+    },
+    getCurrentProductVariant: state => {
+      return state.currentProductVariant;
     }
   },
   mutations: {
@@ -27,6 +34,9 @@ export default new Vuex.Store({
     },
     setCurrentProduct(state, product) {
       state.currentProduct = product;
+    },
+    setCurrentProductVariants(state, variant) {
+      state.currentProductVariant = variant;
     }
   },
   actions: {}
