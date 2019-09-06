@@ -13,12 +13,12 @@
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
-              <v-autocomplete
+              <v-select
                 v-model="currentProductDetail.type"
                 :items="categories"
                 :rules="nameRules"
                 label="Select a category"
-              ></v-autocomplete>
+              ></v-select>
             </v-col>
           </v-row>
         </v-form>
