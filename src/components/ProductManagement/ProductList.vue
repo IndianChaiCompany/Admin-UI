@@ -1,11 +1,10 @@
 <template>
-  <v-container grid-list-xs>
-    <ProductTile
-      v-for="(product, key) in productList"
-      :key="key"
-      :product="product[0]"
-      :refID="product[1]"
-    ></ProductTile>
+  <v-container>
+    <v-row wrap>
+      <v-col sm="12" md="4" v-for="(product, key) in productList" :key="key">
+        <ProductTile :product="product[0]" :refID="product[1]"></ProductTile>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

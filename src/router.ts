@@ -28,14 +28,14 @@ export default new Router({
       path: "/product",
       name: "product",
       component: Product,
-      beforeEnter(to, from, next) {
-        const name = prompt("Enter name");
-        if (name == "ankur") {
-          next();
-        } else {
-          next({ name: "home" });
-        }
-      }
+      // beforeEnter(to, from, next) {
+      //   const name = prompt("Enter name");
+      //   if (name == "ankur") {
+      //     next();
+      //   } else {
+      //     next({ name: "home" });
+      //   }
+      // }
     },
     {
       path: "/product/add",
