@@ -13,7 +13,7 @@
       </v-list-item-avatar>
     </v-list-item>
 
-    <v-card-actions>
+    <v-card-actions v-if="refID">
       <v-btn text>Edit</v-btn>
       <v-btn text @click="deleteProduct">Delete</v-btn>
     </v-card-actions>

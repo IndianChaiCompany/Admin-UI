@@ -59,15 +59,40 @@ export default class Stage1 extends vue {
       this.final.type = this.category.toLowerCase() as ProductType;
 
       this.loading = true;
-      let db = firebase.firestore();
-      db.collection("Product")
-        .add(this.final)
-        .then(docRef => {
-          that.$store.commit("setDocRef", docRef.id);
-          that.loading = false;
-          that.$emit("submit", docRef.id);
-        });
+      const db = firebase.firestore();
+
+      if (this.isExistingProduct == false) {
+        db.collection("Product")
+          .add(this.final)
+          .then(docRef => {
+            that.$store.commit("setDocRef", docRef.id);
+            that.loading = false;
+            that.$emit("submit");
+          })
+          .catch(err => {
+            console.warn(err);
+            that.loading = false;
+          });
+      } else {
+        db.collection("Product")
+          .doc(this.currentProduct)
+          .update(this.final)
+          .then(() => {
+            that.loading = false;
+            that.$emit("submit");
+          })
+          .catch(err => {
+            console.warn(err);
+            that.loading = false;
+          });
+      }
     }
+  }
+  get currentProduct(): string {
+    return this.$store.getters.getDocRef;
+  }
+  get isExistingProduct(): boolean {
+    return !!this.currentProduct;
   }
 }
 </script>
