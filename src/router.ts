@@ -33,6 +33,11 @@ export default new Router({
       path: "/product/add",
       name: "product add",
       component: ProductDetailForm
+    },
+    {
+      path: "/product/edit",
+      name: "product edit",
+      component: ProductDetailForm
     }
   ]
 });

@@ -14,7 +14,7 @@
     </v-list-item>
 
     <v-card-actions v-if="refID">
-      <v-btn text>Edit</v-btn>
+      <v-btn text @click="editProduct">Edit</v-btn>
       <v-btn text @click="deleteProduct">Delete</v-btn>
     </v-card-actions>
   </v-card>
@@ -37,6 +37,11 @@ export default class ProductTile extends Vue {
     db.collection("Product")
       .doc(this.refID)
       .delete();
+  }
+
+  editProduct() {
+    this.$store.commit("setDocRef", this.refID);
+    this.$router.push("/product/edit");
   }
 }
 </script>

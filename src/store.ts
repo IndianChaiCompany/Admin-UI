@@ -5,19 +5,28 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    docRef: ""
+    docRef: "",
+    currentProduct: {}
   },
   getters: {
     getDocRef: state => {
       return state.docRef;
+    },
+    getCurrentProduct: state => {
+      return state.currentProduct;
     }
   },
   mutations: {
     setDocRef(state, value) {
       state.docRef = value;
     },
-    resetDocRef(state) {
+    resetProduct(state) {
       state.docRef = "";
+      state.currentProduct = {};
+      console.log("currentProductCleared");
+    },
+    setCurrentProduct(state, product) {
+      state.currentProduct = product;
     }
   },
   actions: {}

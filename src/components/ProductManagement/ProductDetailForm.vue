@@ -17,7 +17,11 @@
       </v-stepper-step>
 
       <v-stepper-content step="1">
-        <Stage1 @submit="stage = 2" @cancel="$router.back()"></Stage1>
+        <Stage1
+          :givenData="currentProduct"
+          @submit="stage = 2"
+          @cancel="$router.back()"
+        ></Stage1>
       </v-stepper-content>
 
       <v-stepper-step :complete="stage > 2" step="2"
@@ -82,15 +86,28 @@ export default class ProductDetailForm extends vue {
       .get()
       .then(snapshot => {
         this.currentProduct = snapshot.data() as IProduct;
+        this.$store.commit("setCurrentProduct", this.currentProduct);
       });
+  }
+
+  isEdit() {
+    return this.$route.path == "/product/edit";
+  }
+  isAdd() {
+    return this.$route.path == "/product/add";
   }
 
   created() {
     console.log("Form created");
-  }
-  beforeDestroy() {
-    this.$store.commit("resetDocRef");
-    console.log("deleteing docRef");
+    console.log(this.$route.path);
+    if (this.isEdit()) {
+      if (this.isExistingProduct == false) {
+        this.$router.push("/");
+      }
+    }
+    if (this.isAdd()) {
+      this.$store.commit("resetProduct");
+    }
   }
   destroyed() {
     console.log("Form destroyed");
