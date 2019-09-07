@@ -28,7 +28,6 @@
         <v-stepper-step :complete="stage > 2" step="2"
           >Description</v-stepper-step
         >
-
         <v-stepper-content step="2">
           <Stage2 @submit="stage = 3" @cancel="stage = 1"></Stage2>
         </v-stepper-content>
@@ -36,18 +35,16 @@
         <v-stepper-step :complete="stage > 3" step="3"
           >Inventory and Pricing</v-stepper-step
         >
-
         <v-stepper-content step="3">
           <Stage3 @submit="stage = 4" @cancel="stage = 2"></Stage3>
         </v-stepper-content>
 
         <v-stepper-step step="4">Pictures</v-stepper-step>
         <v-stepper-content step="4">
-          <v-card color="grey lighten-3" class="mb-12" height="200px"></v-card>
-          <v-btn color="success" @click="$router.push('/product')"
-            >Submit</v-btn
-          >
-          <v-btn text @click="stage = 3">Cancel</v-btn>
+          <Stage4
+            @submit="$router.push('/product')"
+            @cancel="stage = 3"
+          ></Stage4>
         </v-stepper-content>
       </v-stepper>
     </v-container>
@@ -60,13 +57,14 @@ import { Component, Ref } from "vue-property-decorator";
 import Stage1 from "./ProductForm/Stage1.vue";
 import Stage2 from "./ProductForm/Stage2.vue";
 import Stage3 from "./ProductForm/Stage3.vue";
+import Stage4 from "./ProductForm/Stage4.vue";
 import ProductTile from "./ProductTile.vue";
 import { IProduct, IVariant } from "../../../../Common/IProducts";
 import * as firestore from "firebase/app";
 import "firebase/firestore";
 
 @Component({
-  components: { ProductTile, Stage1, Stage2, Stage3 }
+  components: { ProductTile, Stage1, Stage2, Stage3, Stage4 }
 })
 export default class ProductDetailForm extends vue {
   stage = 1;
