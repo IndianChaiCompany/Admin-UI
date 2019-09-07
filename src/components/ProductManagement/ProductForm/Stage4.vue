@@ -82,17 +82,29 @@ import ImagePreview from "./ImagePreview.vue";
 export default class Stage4 extends vue {
   loading = false;
 
-  productIconURL = this.currentProductDetail.productIconURL;
+  productIconURL = this.currentProductDetail.productIconURL || "";
   productImagesURL = [
-    this.currentProductDetail.productImagesURL1,
-    this.currentProductDetail.productImagesURL2,
-    this.currentProductDetail.productImagesURL3,
-    this.currentProductDetail.productImagesURL4
+    this.currentProductDetail.productImagesURL1 || "",
+    this.currentProductDetail.productImagesURL2 || "",
+    this.currentProductDetail.productImagesURL3 || "",
+    this.currentProductDetail.productImagesURL4 || ""
   ];
   productVariantImagesURL = {} as any;
 
   get currentProductDetail() {
     const product = this.$store.getters.getCurrentProduct as IProduct;
+
+    console.log(product);
+
+    this.productIconURL = product.productIconURL || "";
+
+    this.productImagesURL = [
+      product.productImagesURL1 || "",
+      product.productImagesURL2 || "",
+      product.productImagesURL3 || "",
+      product.productImagesURL4 || ""
+    ];
+
     return product;
   }
   get currentProductVariant() {

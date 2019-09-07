@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-container v-if="isExistingProduct" :fluid="true">
+  <div v-if="dataDownloaded">
+    <v-container v-if="isExistingProduct">
       <v-row align="center" justify="center">
         <v-col>
           <h2 class="text-center display-1">You are editing</h2>
@@ -68,6 +68,7 @@ import "firebase/firestore";
 })
 export default class ProductDetailForm extends vue {
   stage = 1;
+  dataDownloaded = false;
 
   get currentProductID(): string {
     return this.$store.getters.getDocRef;
@@ -87,6 +88,7 @@ export default class ProductDetailForm extends vue {
     productRef.onSnapshot(snapshot => {
       this.currentProduct = snapshot.data() as IProduct;
       this.$store.commit("setCurrentProduct", this.currentProduct);
+      this.dataDownloaded = true;
     });
 
     productRef.collection("Variant").onSnapshot(snapshot => {

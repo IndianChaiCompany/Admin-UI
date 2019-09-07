@@ -2,14 +2,14 @@
   <v-card class="ma-2">
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title class="headline mb-1">
-          {{ product.name }}
-        </v-list-item-title>
+        <v-list-item-title class="headline mb-1">{{
+          product.name
+        }}</v-list-item-title>
         <v-list-item-subtitle>{{ product.summary }}</v-list-item-subtitle>
       </v-list-item-content>
 
       <v-list-item-avatar tile size="80" color="grey">
-        <v-img :src="product.productIconURL"></v-img>
+        <v-img :src="img"></v-img>
       </v-list-item-avatar>
     </v-list-item>
 
@@ -31,6 +31,8 @@ import "firebase/firestore";
 export default class ProductTile extends Vue {
   @Prop({ type: Object as () => IProduct }) product!: IProduct;
   @Prop(String) refID!: string;
+
+  img = this.product.productIconURL || "";
 
   deleteProduct() {
     let db = firebase.firestore();
