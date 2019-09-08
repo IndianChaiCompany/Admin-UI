@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     docRef: "",
     currentProduct: {},
-    currentProductVariant: []
+    currentProductVariant: [],
+    currentUser: {} as firebase.User
   },
   getters: {
     getDocRef: state => {
@@ -21,6 +22,15 @@ export default new Vuex.Store({
     },
     getCurrentProductVariant: state => {
       return state.currentProductVariant;
+    },
+    getCurrentUser:state=>{
+      return state.currentUser;
+    },
+    isLoggedIn:state=>{
+      if (state.currentUser.email) {
+        return true;
+      }
+      return false;
     }
   },
   mutations: {
@@ -37,6 +47,9 @@ export default new Vuex.Store({
     },
     setCurrentProductVariants(state, variant) {
       state.currentProductVariant = variant;
+    },
+    setCurrentUser(state,user){
+      state.currentUser = user;
     }
   },
   actions: {}

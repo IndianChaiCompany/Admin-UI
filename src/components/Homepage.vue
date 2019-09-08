@@ -4,9 +4,10 @@
       <h1 class="display-2 font-weight-bold mb-3">Welcome to ICC Admin Page</h1>
       <p class="subheading font-weight-regular">
         This website is for authorised personnel only
-        <br /><strong>Please login to continue</strong>
+        <br />
+        <strong v-if="isLoggedIn == false">Please login to continue</strong>
       </p>
-      <router-link to="./product">
+      <router-link to="./product" v-if="isLoggedIn">
         <v-btn color="info">Product Management</v-btn>
       </router-link>
     </v-layout>
@@ -21,6 +22,9 @@ import { Component } from "vue-property-decorator";
 export default class Homepage extends Vue {
   destroyed() {
     console.log("Homepage destroyed");
+  }
+  get isLoggedIn() {
+    return this.$store.getters.isLoggedIn;
   }
 }
 </script>

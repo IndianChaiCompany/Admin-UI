@@ -11,16 +11,12 @@
           <v-icon>mdi-home</v-icon>
         </v-btn>
       </router-link>
-      <router-link tag="div" to="/about">
+      <router-link tag="div" to="/product">
         <v-btn icon>
           <v-icon>mdi-book-information-variant</v-icon>
         </v-btn>
       </router-link>
-      <router-link tag="div" to="/about">
-        <v-btn icon>
-          <v-icon>mdi-login</v-icon>
-        </v-btn>
-      </router-link>
+      <Login></Login>
     </v-app-bar>
 
     <v-content>
@@ -31,7 +27,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Login from "./components/Login.vue";
 
-@Component
+@Component({
+  components: {
+    Login
+  }
+})
 export default class App extends Vue {}
 </script>
