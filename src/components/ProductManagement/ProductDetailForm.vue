@@ -116,6 +116,7 @@ export default class ProductDetailForm extends vue {
       }
     }
     if (this.isAdd()) {
+      this.dataDownloaded = true;
       this.$store.commit("resetProduct");
     }
   }
