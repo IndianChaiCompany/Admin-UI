@@ -51,7 +51,7 @@
 <script lang="ts">
 import vue from "vue";
 import { Component } from "vue-property-decorator";
-import { IProduct } from "../../../../../Common/IProducts";
+import { IProduct } from "../../../../Common/IProducts";
 
 import * as firebase from "firebase/app";
 import "firebase/firestore";

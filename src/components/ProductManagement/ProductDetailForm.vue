@@ -59,7 +59,7 @@ import Stage2 from "./ProductForm/Stage2.vue";
 import Stage3 from "./ProductForm/Stage3.vue";
 import Stage4 from "./ProductForm/Stage4.vue";
 import ProductTile from "./ProductTile.vue";
-import { IProduct, IVariant } from "../../../../Common/IProducts";
+import { IProduct, IVariant } from "../../../Common/IProducts";
 import * as firestore from "firebase/app";
 import "firebase/firestore";
 

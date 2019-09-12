@@ -12,7 +12,7 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { Vue, Prop, Component } from "vue-property-decorator";
-import { ProductType, IProduct } from "../../../../Common/IProducts";
+import { ProductType, IProduct } from "../../../Common/IProducts";
 import ProductTile from "./ProductTile.vue";
 
 @Component({

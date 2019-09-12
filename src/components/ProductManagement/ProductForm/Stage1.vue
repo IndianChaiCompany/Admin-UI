@@ -32,7 +32,7 @@
 <script lang="ts">
 import vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import { IProduct, ProductType } from "../../../../../Common/IProducts";
+import { IProduct, ProductType } from "../../../../Common/IProducts";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 

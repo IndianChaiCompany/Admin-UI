@@ -2,7 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
-import { IProduct, IVariant } from "../../Common/IProducts";
 
 Vue.use(Vuex);
 
