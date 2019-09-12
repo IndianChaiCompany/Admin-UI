@@ -3,8 +3,13 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Product from "./views/Product.vue";
 import ProductDetailForm from "./components/ProductManagement/ProductDetailForm.vue";
+import store from "./store";
 
 Vue.use(Router);
+
+function requireAuth(to: any, from: any, next: any) {
+  store.getters.isLoggedIn ? next() : next({ name: "home" });
+}
 
 export default new Router({
   mode: "history",
@@ -27,12 +32,26 @@ export default new Router({
     {
       path: "/product",
       name: "product",
-      component: Product
+      component: Product,
+      beforeEnter(to, from, next) {
+        requireAuth(to, from, next);
+      }
     },
     {
       path: "/product/add",
       name: "product add",
-      component: ProductDetailForm
+      component: ProductDetailForm,
+      beforeEnter(to,from,next){
+        requireAuth(to,from,next);
+      }
+    },
+    {
+      path: "/product/edit",
+      name: "product edit",
+      component: ProductDetailForm,
+      beforeEnter(to,from,next){
+        requireAuth(to,from,next);
+      }
     }
   ]
 });

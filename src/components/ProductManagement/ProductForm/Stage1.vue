@@ -6,19 +6,19 @@
           <v-row>
             <v-col cols="12" md="6">
               <v-text-field
-                v-model="productName"
+                v-model="currentProductDetail.name"
                 label="Product Name"
                 :rules="nameRules"
                 required
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
-              <v-autocomplete
-                v-model="category"
+              <v-select
+                v-model="currentProductDetail.type"
                 :items="categories"
                 :rules="nameRules"
                 label="Select a category"
-              ></v-autocomplete>
+              ></v-select>
             </v-col>
           </v-row>
         </v-form>
@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import { IProduct, ProductType } from "../../../../../Common/IProducts";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
@@ -40,10 +40,14 @@ import "firebase/firestore";
 export default class Stage1 extends vue {
   loading = false;
   final: IProduct = {} as IProduct;
-  productName = "";
-  categories = ["Tea"];
-  category = "";
+
+  categories = ["tea"];
+
   nameRules: Function[] = [(v: string) => !!v || "This is required"];
+
+  get currentProductDetail() {
+    return this.$store.getters.getCurrentProduct as IProduct;
+  }
 
   $refs!: {
     stage: HTMLFormElement;
@@ -55,8 +59,9 @@ export default class Stage1 extends vue {
   submit() {
     if (this.validateStage()) {
       const that = this;
-      this.final.name = this.productName;
-      this.final.type = this.category.toLowerCase() as ProductType;
+
+      this.final.name = this.currentProductDetail.name;
+      this.final.type = this.currentProductDetail.type as ProductType;
 
       this.loading = true;
       const db = firebase.firestore();
